@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery-3.1.1.js"></script>
+  <script src="../js/jquery.form.min.js"></script>
+
+</HEAD>
+
+<BODY>
+  <!-- <div class="bg"></div> -->
+  <!-- <img src="../img/bg1.jpg"   alt="star" width="2550px" height="1050px"> -->
+  <button type="button" class="btn btn-success" onclick="genbarcode()">สร้างบาร์โค้ด</button>
+  <!-- <div id="demo" ></div> -->
+  <!-- <img src="http://localhost:8080/0101000110001111"   alt="star" width="260" height="160">
+
+<img src="http://localhost:8080/010100011000"   alt="star" width="260" height="160">
+
+<img src="http://localhost:8080/010100011000"   alt="star" width="260" height="160">
+
+<img src="http://localhost:8080/010100011000"   alt="star" width="260" height="160"> -->
+  <script>
+    $(document).ready(function () {
+      var options = {
+        beforeSubmit: showRequest, // pre-submit callback 
+        success: showResponse // post-submit callback 
+      }; // bind to the form's submit event 
+      $('#frmUploader').submit(function () {
+        $(this).ajaxSubmit(options); // always return false to prevent standard browser submit and page navigation 
+        return false;
+      });
+    }); // pre-submit callback 
+    function showRequest(formData, jqForm, options) { alert('Uploading is starting.'); return true; } // post-submit callback 
+    function showResponse(responseText, statusText, xhr, $form) {
+      alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+      genbarcode();
+    }
+
+
+
+
+    // var x ="", i;
+    // for (i=1; i<=10; i++) {
+    //   x = x + '<div class="bg" ><img src="http://localhost:8080/barcode/0101000'+i+'1000" width="112" height="55" class="barcode" ><img src="http://localhost:8080/barcode/0101000'+i+'1000" width="112" height="55" class="barcode2" ></div>';
+    // }
+    // document.getElementById("demo").innerHTML = x;
+    function genbarcode() {
+      var data = {
+        test: "test"
+      }
+      var param = JSON.stringify(data);
+      window.location.href = "/genbarcode/" + param;
+    }
+  </script>
+  <!-- <button onclick="genbarcode()">สร้างบาร์โค้ด</button> -->
+
+  <div class="container">
+    <form id="frmUploader" enctype="multipart/form-data" action="api/Upload/" method="post">
+      <input type="file" name="imgUploader" multiple />
+      <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+    </form>
+
+    <div class="bg"><img src="http://localhost:8080/barcode/01010000011000" width="112" height="55" class="barcode"><img
+        src="http://localhost:8080/barcode/010100000011000" width="112" height="55" class="barcode2"></div>
+    <form>
+      <div class="row">
+        <h4>Account</h4>
+        <div class="input-group input-group-icon">
+          <input type="text" placeholder="Full Name" />
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
+        <div class="input-group input-group-icon">
+          <input type="email" placeholder="Email Adress" />
+          <div class="input-icon"><i class="fa fa-envelope"></i></div>
+        </div>
+        <div class="input-group input-group-icon">
+          <input type="password" placeholder="Password" />
+          <div class="input-icon"><i class="fa fa-key"></i></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-half">
+          <h4>Date of Birth</h4>
+          <div class="input-group">
+            <div class="col-third">
+              <input type="text" placeholder="DD" />
+            </div>
+            <div class="col-third">
+              <input type="text" placeholder="MM" />
+            </div>
+            <div class="col-third">
+              <input type="text" placeholder="YYYY" />
+            </div>
+          </div>
+        </div>
+        <div class="col-half">
+          <h4>Gender</h4>
+          <div class="input-group">
+            <input id="gender-male" type="radio" name="gender" value="male" />
+            <label for="gender-male">Male</label>
+            <input id="gender-female" type="radio" name="gender" value="female" />
+            <label for="gender-female">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4>Payment Details</h4>
+        <div class="input-group">
+          <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" />
+          <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+          <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" />
+          <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+        </div>
+        <div class="input-group input-group-icon">
+          <input type="text" placeholder="Card Number" />
+          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+        </div>
+        <div class="col-half">
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Card CVC" />
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+        </div>
+        <div class="col-half">
+          <div class="input-group">
+            <select>
+              <option>01 Jan</option>
+              <option>02 Jan</option>
+            </select>
+            <select>
+              <option>2015</option>
+              <option>2016</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4>Terms and Conditions</h4>
+        <div class="input-group">
+          <input id="terms" type="checkbox" />
+          <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have
+            read the privacy policy.</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</BODY>
+
+</HTML>

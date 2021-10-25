@@ -1,0 +1,22 @@
+{
+  "name": "barcodeforticket",
+  "version": "1.0.0",
+  "description": "Barcode For Ticket",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jittaporn",
+  "license": "ISC",
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "canvas": "^2.8.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jquery": "^3.1.1",
+    "jsbarcode": "^3.11.5",
+    "multer": "^1.4.3"
+  }
+}
