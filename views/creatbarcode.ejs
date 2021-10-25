@@ -16,7 +16,7 @@
 <BODY>
   <!-- <div class="bg"></div> -->
   <!-- <img src="../img/bg1.jpg"   alt="star" width="2550px" height="1050px"> -->
-  <button type="button" class="btn btn-success" onclick="genbarcode()">สร้างบาร์โค้ด</button>
+  <!-- <button type="button" class="btn btn-success" onclick="genbarcode()">สร้างบาร์โค้ด</button> -->
   <!-- <div id="demo" ></div> -->
   <!-- <img src="http://localhost:8080/0101000110001111"   alt="star" width="260" height="160">
 
@@ -67,7 +67,7 @@
           var bg = "background-image: url('" + event.target.result + "');";
           var x = "", i;
           for (i = 1; i <= 1; i++) {
-            x = x + '<div class="container" style="float: left;padding: 0em 0em 0em 0em;" ><div class="bg" style="' + bg + '"><img src="http://localhost:8080/barcode/0101000' + i + '1000" width="112" height="55" class="barcode" ><img src="http://localhost:8080/barcode/0101000' + i + '1000" width="112" height="55" class="barcode2" ></div> </div> ';
+            x = x + '<div class="container" style="float: left;padding: 0em 0em 0em 0em;" ><div class="bg" style="' + bg + '"><img src="http://localhost:8080/barcode/010100001000" width="112" height="55" class="barcode" ><img src="http://localhost:8080/barcode/010100001000" width="112" height="55" class="barcode2" ></div> </div> ';
           }
           document.getElementById("demobg").innerHTML = x;
         }
@@ -93,11 +93,12 @@
       <input type="submit" name="submit" id="btnSubmit" value="Upload" />
     </form>
 
-    <div id="demobg"></div>
+   
 
     <form>
       <div class="row">
-        <h4>Account</h4>
+        <div id="demobg"></div>
+        <!-- <h4>Account</h4>
         <div class="input-group input-group-icon">
           <input type="text" placeholder="Full Name" />
           <div class="input-icon"><i class="fa fa-user"></i></div>
@@ -173,8 +174,8 @@
           <input id="terms" type="checkbox" />
           <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have
             read the privacy policy.</label>
-        </div>
-      </div>
+        </div>-->
+      </div> 
     </form>
   </div>
 </BODY>
