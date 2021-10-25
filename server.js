@@ -21,8 +21,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/", (req, res) => {
-  
-  res.render('creatbarcode');
+  var bgname = Date.now();
+  res.render('creatbarcode', {bgname:bgname});
   //res.sendFile(path.join(__dirname + '/index.html'));
 });
 
@@ -42,7 +42,7 @@ app.get('/genbarcode/:taxId', (req, res) => {
   var data = JSON.parse(req.params.taxId);
   
   console.log(data)
-  res.render('genbarcode');
+  res.render('genbarcode', {data:data});
 
 });
 
@@ -61,11 +61,13 @@ var Storage = multer.diskStorage({
       callback(null,path.join(__dirname, './public/img'));
   },
   filename: function(req, file, callback) {
+    console.log("param");
+    console.log(req.params.bgname);
     let exploded_name = file.originalname.split(".");
     let ext = exploded_name[exploded_name.length - 1];
     console.log(exploded_name);
     console.log(ext);
-      callback(null,  "bg."+ext);
+      callback(null,  req.params.bgname + "_" +"bg."+ext);
   }
 });
 
@@ -76,9 +78,12 @@ var upload = multer({
 // app.get("/", function(req, res) {
 //   res.sendFile(__dirname + "/index.html");
 // });
-app.post("/api/Upload", function(req, res) {
- 
+app.post("/api/Upload/:bgname", function(req, res) {
+  const bgname = req.params.bgname;
+ req.params.bgname = bgname;
   upload(req, res, function(err) {
+   
+    req.params.bgname = req.params.bgname;
       if (err) {
           return res.end("Something went wrong!");
       }
