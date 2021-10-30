@@ -37,7 +37,7 @@
     var bg = "background-image: url('../img/"+'<%= data.bg %>'+"_bg.jpg');";
     var x = "", i;
     for (i = 1; i <= 10; i++) {
-      x = x + '<div class="container" style="float: left;padding: 0em 0em 0em 0em;" ><div class="bg" style="' + bg + '"><img src="http://localhost:8080/barcode/0101000' + i + '1000" width="112" height="55" class="barcode" ><img src="http://localhost:8080/barcode/0101000' + i + '1000" width="112" height="55" class="barcode2" ></div> </div> ';
+      x = x + '<div class="container" style="float: left;padding: 0em 0em 0em 0em;" ><div class="bg" style="' + bg + '"><img src="https://barcodeforticket.herokuapp.com/barcode/0101000' + i + '1000" width="112" height="55" class="barcode" ><img src="https://barcodeforticket.herokuapp.com/barcode/0101000' + i + '1000" width="112" height="55" class="barcode2" ></div> </div> ';
     }
     document.getElementById("demo").innerHTML = x;
     function genbarcode() {

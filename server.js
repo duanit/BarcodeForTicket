@@ -15,7 +15,7 @@ var bodyParser = require('body-parser');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8081
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "/public")));
