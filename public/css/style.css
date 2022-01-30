@@ -2,20 +2,21 @@
     background-image: url("../img/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    width: 600px;
-    height: 247px;
+    width: 643px;
+    height: 264px;
     margin: 2px;
 }
-.barcode{
-    margin-top: 48.7mm;
-    margin-left: 15mm;
-}
+
 .barcode2{
-    margin-top: 48.7mm;
-    margin-left: 4mm;
+    margin-top: 55mm;
+    margin-left: 96.5mm;
 }
 
-
+.barcode{
+  position: absolute;
+  margin-top: 43mm;
+  margin-left: 12mm;
+}
 /* 64ac15 */
 *,
 *:before,

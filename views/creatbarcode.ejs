@@ -31,7 +31,14 @@
       localStorage.setItem("bgname", bgname);
       console.log("bgname")
       console.log(bgname)
+     
       $('#frmUploader').attr('action', 'api/Upload/' + bgname);
+      //alert(bgname);
+      if(bgname == ""){
+        alert("เลือกรูปบัตร");
+        //document.getElementById("btnSubmit").style("display":n);
+          return;
+      }
       var options = {
         beforeSubmit: showRequest, // pre-submit callback 
         success: showResponse // post-submit callback 
@@ -43,7 +50,7 @@
     }); // pre-submit callback 
     function showRequest(formData, jqForm, options) { alert('Uploading is starting.'); return true; } // post-submit callback 
     function showResponse(responseText, statusText, xhr, $form) {
-      alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+      // alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
       var bg = localStorage.getItem("bgname");
       genbarcode(bg);
       //changeimg();
@@ -58,12 +65,13 @@
     // }
     // document.getElementById("demo").innerHTML = x;
     function changeimg(input) {
-
+    
       if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (event) {
           //alert(event.target.result)
           // $('#myid').attr('src', event.target.result);
+       
           var bg = "background-image: url('" + event.target.result + "');";
           var x = "", i;
           for (i = 1; i <= 1; i++) {
@@ -77,20 +85,60 @@
 
     }
     function genbarcode(bg) {
+      localStorage.removeItem("bgname")
+      if(bg == ""){
+        alert("เลือกรูปบัตร");
+        //document.getElementById("btnSubmit").style("display":n);
+          return;
+      }
       var data = {
         test: "test",
-        bg: bg
+        bg: bg,
+        qty:document.getElementById("qty").value,
+        around:document.getElementById("around").value,
+        card_type:document.getElementById("card_type").value
       }
       var param = JSON.stringify(data);
       window.location.href = "/genbarcode/" + param;
     }
   </script>
   <!-- <button onclick="genbarcode()">สร้างบาร์โค้ด</button> -->
-
+ 
   <div class="container">
-    <form id="frmUploader" enctype="multipart/form-data" method="post">
-      <input type="file" name="imgUploader" onchange="changeimg(this)" multiple />
-      <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+    <div class="row">
+      <div class="input-group input-group-icon">
+        <select name="around" id="around" >
+          <option value="00"> รอบแข่ง</option>
+          <option value="01">เช้า</option>
+           <option value="02"> บ่าย</option>
+        
+        </select>
+        <!-- <input type="text" placeholder="ประเภทบัตร" />
+        <div class="input-icon"><i class="fa fa-user"></i></div> -->
+      </div>
+      <div class="input-group input-group-icon">
+        <!-- <input type="email" placeholder="ประเภทตั๋ว" /> -->
+       
+        <select name="card_type" id="card_type" >
+          <option value="00">ประเภทตั๋ว</option>
+          <option value="01">วีไอพี</option>
+           <option value="02">ธรรมดา</option>
+          <option value="03">ฟรี</option>
+        </select>
+       
+        <!-- <label>ประเภทตั๋ว</label> -->
+        <!-- <div class="input-icon"><i class="fa fa-envelope"></i></div> -->
+      </div>
+
+      <div class="input-group input-group-icon">
+        <input type="number" placeholder="จำนวน" name="qty" id="qty" style="width: 50%;" /> 
+        <!-- <div class="input-icon"><i class="fa fa-key"></i></div> -->
+      </div>
+     
+    </div>
+    <form id="frmUploader" enctype="multipart/form-data" method="post" onsubmit="changeimg(this)">
+      <input type="file" name="imgUploader" onchange="changeimg(this)"  multiple />
+      <input type="submit" name="submit" id="btnSubmit" value="Upload"  />
     </form>
 
    
